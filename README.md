@@ -1,7 +1,7 @@
 
 # HealthSetter   [![Badge License]][License]
 
-*Change your health, thirst, hunger & oxygen.*
+*A **[Raft]** mod to change your status values.*
 
 <br>
 <br>

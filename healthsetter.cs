@@ -86,6 +86,27 @@ public class healthsetter : Mod
       Debug.Log(SName + "thirsty was set " + thirstyint);
     }
 
+    [ConsoleCommand("bonushealth", "set your bonus health")]
+    private static void bonushp(string[] args)
+    {
+      int bonushpint = 10;
+      if (!int.TryParse(args[0], out bonushpint))
+      {
+          Debug.Log(Error + "Invalid Value");
+          return;
+      }
+      if (bonushpint > 100) {
+        Debug.Log(Error + "Max = 100");
+        return;
+      }
+      if (bonushpint < 1) {
+        Debug.Log(Error + "Min = 1");
+        return;
+      }
+      RAPI.GetLocalPlayer().Stats.stat_BonusHealth.Value = bonushpint;
+      Debug.Log(SName + "Bonushealth was set " + bonushpint);
+    }
+
     [ConsoleCommand("thirsty", "set your thirsty")]
     private static void thirsty(string[] args)
     {

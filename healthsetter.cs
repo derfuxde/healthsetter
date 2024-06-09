@@ -1,252 +1,242 @@
 using UnityEngine;
 using HarmonyLib;
 using System;
-using System.Globalization;
-using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 
-public class healthsetter : Mod
+public class HealthSetter : Mod
 {
+    private const string SName = "<color=#0000FF>Health Setter : </color>";
+    private const string Error = "<color=#ff0000>Health Setter Error : </color>";
+    private const string Loaded = "<color=#0000FF>Health Setter : </color><color=#ffd900>Health Setter Mod has been Loaded!</color>";
+    private const string UnLoaded = "<color=#0000FF>Health Setter : </color><color=#ffd900>Health Setter Mod has been UnLoaded!</color>";
 
-  private const string SName = "<color=#0000FF>Health Setter : </color>";
-  private const string Error = "<color=#ff0000>Health Setter Error : </color>";
-  private const string Loaded = "<color=#0000FF>Health Setter : </color><color=#ffd900>Health Setter Mod has been Loaded!</color>";
-  private const string UnLoaded = "<color=#0000FF>Health Setter : </color><color=#ffd900>Health Setter Mod has been UnLoaded!</color>";
-
+    private static int maxHealth = 100;
+    private static int maxThirst = 100;
+    private static int maxHunger = 100;
+    private static int maxOxygen = 100;
 
     public void Start()
     {
         Debug.Log(Loaded);
+        ExtraSettingsAPI_Load();
     }
 
     public void OnModUnload()
     {
         Debug.Log(UnLoaded);
+        ExtraSettingsAPI_Unload();
     }
 
     [ConsoleCommand("sethealth", "set your health")]
     private static void sethealth(string[] args)
     {
-      int healthint = 100;
-      if (!int.TryParse(args[0], out healthint))
-      {
-          Debug.Log(Error + "Invalid Health");
-          return;
-      }
-      if (healthint > 100) {
-        Debug.Log(Error + "Max = 100");
-        return;
-      }
-      if (healthint < 1) {
-        Debug.Log(Error + "Min = 1");
-        return;
-      }
-      RAPI.GetLocalPlayer().Stats.stat_health.Value = healthint;
-      Debug.Log(SName + "health was set " + healthint);
+        if (args.Length < 1)
+        {
+            Debug.Log(Error + "Missing Health Value");
+            return;
+        }
+
+        if (!int.TryParse(args[0], out int healthint))
+        {
+            Debug.Log(Error + "Invalid Health");
+            return;
+        }
+
+        if (healthint > maxHealth)
+        {
+            Debug.Log(Error + $"Max = {maxHealth}");
+            return;
+        }
+
+        if (healthint < 1)
+        {
+            Debug.Log(Error + "Min = 1");
+            return;
+        }
+
+        RAPI.GetLocalPlayer().Stats.stat_health.Value = healthint;
+        Debug.Log(SName + "health was set " + healthint);
     }
 
     [ConsoleCommand("health", "set your health")]
     private static void health(string[] args)
     {
-      int healthin = 100;
-      if (!int.TryParse(args[0], out healthin))
-      {
-          Debug.Log(Error + "Invalid Health");
-          return;
-      }
-      if (healthin > 100) {
-        Debug.Log(Error + "Max = 100");
-        return;
-      }
-      if (healthin < 1) {
-        Debug.Log(Error + "Min = 1");
-        return;
-      }
-      RAPI.GetLocalPlayer().Stats.stat_health.Value = healthin;
-      Debug.Log(SName + "health was set " + healthin);
+        sethealth(args);
     }
 
-    [ConsoleCommand("setthirsty", "set your thirsty")]
+    [ConsoleCommand("setthirsty", "set your thirst")]
     private static void setthirsty(string[] args)
     {
-      int thirstyint = 10;
-      if (!int.TryParse(args[0], out thirstyint))
-      {
-          Debug.Log(Error + "Invalid Value");
-          return;
-      }
-      if (thirstyint > 100) {
-        Debug.Log(Error + "Max = 100");
-        return;
-      }
-      if (thirstyint < 1) {
-        Debug.Log(Error + "Min = 1");
-        return;
-      }
-      RAPI.GetLocalPlayer().Stats.stat_thirst.Normal.Value = thirstyint;
-      Debug.Log(SName + "thirsty was set " + thirstyint);
+        if (args.Length < 1)
+        {
+            Debug.Log(Error + "Missing Thirst Value");
+            return;
+        }
+
+        if (!int.TryParse(args[0], out int thirstint))
+        {
+            Debug.Log(Error + "Invalid Thirst");
+            return;
+        }
+
+        if (thirstint > maxThirst)
+        {
+            Debug.Log(Error + $"Max = {maxThirst}");
+            return;
+        }
+
+        if (thirstint < 1)
+        {
+            Debug.Log(Error + "Min = 1");
+            return;
+        }
+
+        RAPI.GetLocalPlayer().Stats.stat_thirst.Normal.Value = thirstint;
+        Debug.Log(SName + "thirst was set " + thirstint);
     }
 
-    [ConsoleCommand("bonushealth", "set your bonus health")]
-    private static void bonushp(string[] args)
-    {
-      int bonushpint = 10;
-      if (!int.TryParse(args[0], out bonushpint))
-      {
-          Debug.Log(Error + "Invalid Value");
-          return;
-      }
-      if (bonushpint > 100) {
-        Debug.Log(Error + "Max = 100");
-        return;
-      }
-      if (bonushpint < 1) {
-        Debug.Log(Error + "Min = 1");
-        return;
-      }
-      RAPI.GetLocalPlayer().Stats.stat_BonusHealth.Value = bonushpint;
-      Debug.Log(SName + "Bonushealth was set " + bonushpint);
-    }
-
-    [ConsoleCommand("thirsty", "set your thirsty")]
+    [ConsoleCommand("thirsty", "set your thirst")]
     private static void thirsty(string[] args)
     {
-      int thirstyin = 10;
-      if (!int.TryParse(args[0], out thirstyin))
-      {
-          Debug.Log(Error + "Invalid Value");
-          return;
-      }
-      if (thirstyin > 100) {
-        Debug.Log(Error + "Max = 100");
-        return;
-      }
-      if (thirstyin < 1) {
-        Debug.Log(Error + "Min = 1");
-        return;
-      }
-      RAPI.GetLocalPlayer().Stats.stat_thirst.Normal.Value = thirstyin;
-      Debug.Log(SName + "thirsty was set " + thirstyin);
+        setthirsty(args);
     }
 
     [ConsoleCommand("sethunger", "set your hunger")]
     private static void sethunger(string[] args)
     {
-      int hungerint = 10;
-      if (!int.TryParse(args[0], out hungerint))
-      {
-          Debug.Log(Error + "Invalid Value");
-          return;
-      }
-      if (hungerint > 100) {
-        Debug.Log(Error + "Max = 100");
-        return;
-      }
-      if (hungerint < 1) {
-        Debug.Log(Error + "Min = 1");
-        return;
-      }
-      RAPI.GetLocalPlayer().Stats.stat_hunger.Normal.Value = hungerint;
-      Debug.Log(SName + "hunger was set " + hungerint);
+        if (args.Length < 1)
+        {
+            Debug.Log(Error + "Missing Hunger Value");
+            return;
+        }
+
+        if (!int.TryParse(args[0], out int hungerint))
+        {
+            Debug.Log(Error + "Invalid Hunger");
+            return;
+        }
+
+        if (hungerint > maxHunger)
+        {
+            Debug.Log(Error + $"Max = {maxHunger}");
+            return;
+        }
+
+        if (hungerint < 1)
+        {
+            Debug.Log(Error + "Min = 1");
+            return;
+        }
+
+        RAPI.GetLocalPlayer().Stats.stat_hunger.Normal.Value = hungerint;
+        Debug.Log(SName + "hunger was set " + hungerint);
     }
 
     [ConsoleCommand("hunger", "set your hunger")]
     private static void hunger(string[] args)
     {
-      int hungerin = 10;
-      if (!int.TryParse(args[0], out hungerin))
-      {
-          Debug.Log(Error + "Invalid Value");
-          return;
-      }
-      if (hungerin > 100) {
-        Debug.Log(Error + "Max = 100");
-        return;
-      }
-      if (hungerin < 1) {
-        Debug.Log(Error + "Min = 1");
-        return;
-      }
-      RAPI.GetLocalPlayer().Stats.stat_hunger.Normal.Value = hungerin;
-      Debug.Log(SName + "hunger was set " + hungerin);
+        sethunger(args);
     }
 
     [ConsoleCommand("setoxygen", "set your oxygen")]
     private static void setoxygen(string[] args)
     {
-      int oxygenint = 10;
-      if (!int.TryParse(args[0], out oxygenint))
-      {
-          Debug.Log(Error + "Invalid Value");
-          return;
-      }
-      if (oxygenint > 100) {
-        Debug.Log(Error + "Max = 100");
-        return;
-      }
-      if (oxygenint < 1) {
-        Debug.Log(Error + "Min = 1");
-        return;
-      }
-      RAPI.GetLocalPlayer().Stats.stat_oxygen.Value = oxygenint;
-      Debug.Log(SName + "oxygenint was set " + oxygenint);
+        if (args.Length < 1)
+        {
+            Debug.Log(Error + "Missing Oxygen Value");
+            return;
+        }
+
+        if (!int.TryParse(args[0], out int oxygenint))
+        {
+            Debug.Log(Error + "Invalid Oxygen");
+            return;
+        }
+
+        if (oxygenint > maxOxygen)
+        {
+            Debug.Log(Error + $"Max = {maxOxygen}");
+            return;
+        }
+
+        if (oxygenint < 1)
+        {
+            Debug.Log(Error + "Min = 1");
+            return;
+        }
+
+        RAPI.GetLocalPlayer().Stats.stat_oxygen.Value = oxygenint;
+        Debug.Log(SName + "oxygen was set " + oxygenint);
     }
 
     [ConsoleCommand("oxygen", "set your oxygen")]
     private static void oxygen(string[] args)
     {
-      int oxygenin = 10;
-      if (!int.TryParse(args[0], out oxygenin))
-      {
-          Debug.Log(Error + "Invalid Value");
-          return;
-      }
-      if (oxygenin > 100) {
-        Debug.Log(Error + "Max = 100");
-        return;
-      }
-      if (oxygenin < 1) {
-        Debug.Log(Error + "Min = 1");
-        return;
-      }
-      RAPI.GetLocalPlayer().Stats.stat_oxygen.Value = oxygenin;
-      Debug.Log(SName + "oxygenint was set " + oxygenin);
+        setoxygen(args);
     }
 
-    [ConsoleCommand("refill", "refill health, thirst and hungry bar")]
+    [ConsoleCommand("refill", "refill your health, hunger, thirst, and oxygen")]
     private static void refill(string[] args)
     {
-        if (Raft_Network.InMenuScene)
-        {
-            Debug.Log(Error + "Is In Lobby");
-            return;
-        }
-        if (args.Length < 1)
-        {
-            RAPI.GetLocalPlayer().Stats.stat_hunger.Normal.Value = 100;
-            RAPI.GetLocalPlayer().Stats.stat_thirst.Normal.Value = 100;
-            RAPI.GetLocalPlayer().Stats.stat_health.Value = 100;
-            RAPI.GetLocalPlayer().Stats.stat_oxygen.Value = 100;
-        }
-        else
-        {
-            Debug.Log(Error + "use cmd \"refill\" only!");
-        }
+        RAPI.GetLocalPlayer().Stats.stat_health.Value = maxHealth;
+        RAPI.GetLocalPlayer().Stats.stat_thirst.Normal.Value = maxThirst;
+        RAPI.GetLocalPlayer().Stats.stat_hunger.Normal.Value = maxHunger;
+        RAPI.GetLocalPlayer().Stats.stat_oxygen.Value = maxOxygen;
+
+        Debug.Log(SName + "All stats refilled to maximum values.");
     }
 
-    [ConsoleCommand("healthhelp", "all command for health setter")]
+    [ConsoleCommand("healthhelp", "all commands for health setter")]
     private static void healthhelp(string[] args)
     {
         if (args.Length < 1)
         {
-          Debug.Log(SName + "sethealth or health (count)" + " = set your health");
-          Debug.Log(SName + "sethunger or hunger (count)" + " = set your hunger");
-          Debug.Log(SName + "setthirsty or thirst (count)" + " = set your thirst");
-          Debug.Log(SName + "setoxygen or oxygen (count)" + " = set your oxygen");
-          Debug.Log(SName + "refill" + " = refill your health, hunger, thirst and oxygen");
+            Debug.Log(SName + "sethealth or health (count)" + " = set your health");
+            Debug.Log(SName + "sethunger or hunger (count)" + " = set your hunger");
+            Debug.Log(SName + "setthirsty or thirsty (count)" + " = set your thirst");
+            Debug.Log(SName + "setoxygen or oxygen (count)" + " = set your oxygen");
+            Debug.Log(SName + "refill" + " = refill your health, hunger, thirst and oxygen");
         }
         else
         {
             Debug.Log(Error + "use cmd \"help\" only!");
         }
     }
+
+    // ExtraSettingsAPI methods
+    public void ExtraSettingsAPI_Load()
+    {
+        ExtraSettingsAPI_SetInputValue("maxHealth", maxHealth.ToString());
+        ExtraSettingsAPI_SetInputValue("maxThirst", maxThirst.ToString());
+        ExtraSettingsAPI_SetInputValue("maxHunger", maxHunger.ToString());
+        ExtraSettingsAPI_SetInputValue("maxOxygen", maxOxygen.ToString());
+    }
+
+    public void ExtraSettingsAPI_Unload()
+    {
+        // Cleanup if necessary
+    }
+
+    public void ExtraSettingsAPI_SettingsOpen()
+    {
+        // Called when settings menu is opened
+    }
+
+    public void ExtraSettingsAPI_SettingsClose()
+    {
+        // Called when settings menu is closed
+        maxHealth = Convert.ToInt32(ExtraSettingsAPI_GetInputValue("maxHealth"));
+        maxThirst = Convert.ToInt32(ExtraSettingsAPI_GetInputValue("maxThirst"));
+        maxHunger = Convert.ToInt32(ExtraSettingsAPI_GetInputValue("maxHunger"));
+        maxOxygen = Convert.ToInt32(ExtraSettingsAPI_GetInputValue("maxOxygen"));
+    }
+
+    
+    public static void ExtraSettingsAPI_SaveSettings() { }
+
+    
+    public static string ExtraSettingsAPI_GetInputValue(string SettingName) => "";
+
+    
+    public static void ExtraSettingsAPI_SetInputValue(string SettingName, string value) { }
 }

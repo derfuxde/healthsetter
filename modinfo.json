@@ -2,11 +2,41 @@
   "name": "healthsetter",
   "author": "derfuxde",
   "description": "you can change your health, thirsty and hunger",
-  "version": "1.0.3",
+  "version": "2.0",
   "license": "GNU AGPLv3",
   "icon": "icon.png",
   "banner": "banner.jpg",
   "gameVersion": "Update 11",
   "isModPermanent": false,
-  "excludedFiles": []
+  "excludedFiles": [],
+  "modSettings": [
+    {
+      "name": "maxHealth",
+      "text": "Set the max settable health",
+      "type": "input",
+      "default": "100",
+      "mode": "DecimalNumber"
+    },
+    {
+      "name": "maxThirst",
+      "text": "Set the max settable thirst",
+      "type": "input",
+      "default": "100",
+      "mode": "DecimalNumber"
+    },
+    {
+      "name": "maxHunger",
+      "text": "Set the max settable hunger",
+      "type": "input",
+      "default": "100",
+      "mode": "DecimalNumber"
+    },
+    {
+      "name": "maxOxygen",
+      "text": "Set the max settable oxygen",
+      "type": "input",
+      "default": "100",
+      "mode": "DecimalNumber"
+    }
+  ]
 }

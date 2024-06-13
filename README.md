@@ -1,5 +1,5 @@
 # Raft Healthsetter Mod
-![image](https://github.com/derfuxde/healthsetter/bannner.jpg)
+![image](https://github.com/derfuxde/healthsetter/banner.jpg)
 
 
 ## Beschreibung

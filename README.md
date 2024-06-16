@@ -1,4 +1,6 @@
 # Raft Healthsetter Mod
+[![en](https://img.shields.io/badge/lang-en-green.svg)](https://github.com/jonatasemidio/multilanguage-readme-pattern/blob/master/README.en.md)
+[![de](https://img.shields.io/badge/lang-de-red.svg)](https://github.com/jonatasemidio/multilanguage-readme-pattern/blob/master/README.de.md)
 ![image](banner.jpg)
 
 

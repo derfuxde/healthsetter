@@ -1,7 +1,8 @@
 # Raft Healthsetter Mod
 [![en](https://img.shields.io/badge/lang-en-green.svg)](https://github.com/derfuxde/healthsetter/blob/main/README.md)
 [![de](https://img.shields.io/badge/lang-de-red.svg)](https://github.com/derfuxde/healthsetter/blob/main/README.de.md)
-![image](banner.jpg | width=100)
+![image](banner.jpg)
+<img src="https://cloud.githubusercontent.com/assets/yourgif.gif" width="400" height="790">
 
 
 ## description

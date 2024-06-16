@@ -53,9 +53,40 @@ public class HealthSetter : Mod
             Debug.Log(Error + "Min = 1");
             return;
         }
+        
+        if(args.Length == 1)
+        {
+            RAPI.GetLocalPlayer().Stats.stat_health.Value = healthint;
+            Debug.Log(SName + "health was set " + healthint);
+        }
 
-        RAPI.GetLocalPlayer().Stats.stat_health.Value = healthint;
-        Debug.Log(SName + "health was set " + healthint);
+        if(args.Length > 0)
+        {
+            var players = FindObjectsOfType<Network_Player>();
+
+            foreach (var player in players)
+            {
+                string[] names = player.name.Split(',');
+                string trimmed = names[1].Trim();
+
+                if(players.Length == 1 && args[1] != trimmed)
+                {
+                    Debug.Log(Error + "The only player is you " + trimmed);
+                }
+                if(players.Length == 1 && args[1] == trimmed)
+                {
+                    RAPI.GetLocalPlayer().Stats.stat_health.Value = healthint;
+                    Debug.Log(SName + "health was set " + healthint + " for " + trimmed);
+                }
+                
+
+                if(trimmed == args[1])
+                {
+                    player.Stats.stat_health.Value = healthint;
+                    Debug.Log(SName + "health was set " + healthint + " for " + trimmed);
+                }
+            }
+        }
     }
 
     [ConsoleCommand("health", "set your health")]
@@ -91,8 +122,39 @@ public class HealthSetter : Mod
             return;
         }
 
-        RAPI.GetLocalPlayer().Stats.stat_thirst.Normal.Value = thirstint;
-        Debug.Log(SName + "thirst was set " + thirstint);
+        if(args.Length == 1)
+        {
+            RAPI.GetLocalPlayer().Stats.stat_thirst.Normal.Value = thirstint;
+            Debug.Log(SName + "thirst was set " + thirstint);
+        }
+
+        if(args.Length > 0)
+        {
+            var players = FindObjectsOfType<Network_Player>();
+
+            foreach (var player in players)
+            {
+                string[] names = player.name.Split(',');
+                string trimmed = names[1].Trim();
+
+                if(players.Length == 1 && args[1] != trimmed)
+                {
+                    Debug.Log(Error + "The only player is you" + trimmed);
+                }
+                if(players.Length == 1 && args[1] == trimmed)
+                {
+                    RAPI.GetLocalPlayer().Stats.stat_thirst.Normal.Value = thirstint;
+                    Debug.Log(SName + "thirst was set " + thirstint + " for " + trimmed);
+                }
+                
+
+                if(trimmed == args[1])
+                {
+                    player.Stats.stat_thirst.Normal.Value = thirstint;
+                    Debug.Log(SName + "thirst was set " + thirstint + " for " + trimmed);
+                }
+            }
+        }
     }
 
     [ConsoleCommand("thirsty", "set your thirst")]
@@ -128,8 +190,41 @@ public class HealthSetter : Mod
             return;
         }
 
-        RAPI.GetLocalPlayer().Stats.stat_hunger.Normal.Value = hungerint;
-        Debug.Log(SName + "hunger was set " + hungerint);
+        if(args.Length == 1)
+        {
+            RAPI.GetLocalPlayer().Stats.stat_hunger.Normal.Value = hungerint;
+            Debug.Log(SName + "hunger was set " + hungerint);
+        }
+
+        if(args.Length > 0)
+        {
+            var players = FindObjectsOfType<Network_Player>();
+
+            foreach (var player in players)
+            {
+                string[] names = player.name.Split(',');
+                string trimmed = names[1].Trim();
+
+                if(players.Length == 1 && args[1] != trimmed)
+                {
+                    Debug.Log(Error + "The only player is you" + trimmed);
+                }
+                if(players.Length == 1 && args[1] == trimmed)
+                {
+                    RAPI.GetLocalPlayer().Stats.stat_hunger.Normal.Value = hungerint;
+                    Debug.Log(SName + "hunger was set " + hungerint + " for " + trimmed);
+                }
+                
+
+                if(trimmed == args[1])
+                {
+                    player.Stats.stat_hunger.Normal.Value = hungerint;
+                    Debug.Log(SName + "hunger was set " + hungerint + " for " + trimmed);
+                }
+            }
+        }
+
+        
     }
 
     [ConsoleCommand("hunger", "set your hunger")]
@@ -163,6 +258,41 @@ public class HealthSetter : Mod
         {
             Debug.Log(Error + "Min = 1");
             return;
+        }
+
+        if(args.Length == 1)
+        {
+            RAPI.GetLocalPlayer().Stats.stat_oxygen.Value = oxygenint;
+            Debug.Log(SName + "oxygen was set " + oxygenint);
+        }
+
+        if(args.Length > 0)
+        {
+            var players = FindObjectsOfType<Network_Player>();
+
+            foreach (var player in players)
+            {
+                string[] names = player.name.Split(',');
+                string trimmed = names[1].Trim();
+
+                if(players.Length == 1 && args[1] != trimmed)
+                {
+                    Debug.Log(Error + "The only player is you" + trimmed);
+                     
+                }
+                if(players.Length == 1 && args[1] == trimmed)
+                {
+                    RAPI.GetLocalPlayer().Stats.stat_oxygen.Value = oxygenint;
+                    Debug.Log(SName + "oxygen was set " + oxygenint + " for " + trimmed);
+                }
+                
+
+                if(trimmed == args[1])
+                {
+                    player.Stats.stat_oxygen.Value = oxygenint;
+                    Debug.Log(SName + "oxygen was set " + oxygenint + " for " + trimmed);
+                }
+            }
         }
 
         RAPI.GetLocalPlayer().Stats.stat_oxygen.Value = oxygenint;

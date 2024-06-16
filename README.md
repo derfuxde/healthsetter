@@ -4,7 +4,7 @@
 
 ## description
 
-Der Raft Healthsetter Mod ermöglicht das einfache Anpassen der Gesundheitswerte Ihrer Charaktere im Spiel "Raft".
+The Raft Healthsetter Mod allows you to easily adjust the health values ​​of your characters in the game "Raft".
 
 ## Features
 

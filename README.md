@@ -2,17 +2,17 @@
 ![image](banner.jpg)
 
 
-## Beschreibung
+## description
 
 Der Raft Healthsetter Mod ermöglicht das einfache Anpassen der Gesundheitswerte Ihrer Charaktere im Spiel "Raft".
 
-## Funktionen
+## Features
 
-- sethealth oder health (Anzahl)
-- setthirsty oder thirsty (Anzahl)
-- sethunger oder hunger (Anzahl)
-- setoxygen oder oxygen (Anzahl)
-- refill
-- healthhelp
+- sethealth or health (number)    = set your health
+- setthirsty or thirsty (number)  = set your thirsty
+- sethunger or hunger (number)    = set your hunger
+- setoxygen or oxygen (number)    = set your oxygen
+- refill                          = to refill all(health, thirsty, hunger and oxygen)
+- healthhelp                      = get all command and a description
 
-Viel Spaß beim Spielen!
+Have fun playing!

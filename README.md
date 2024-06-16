@@ -11,7 +11,7 @@ The Raft Healthsetter Mod allows you to easily adjust the health values ​​of
 
 ## Features
 
-- sethealth or health (number)    = set your health
+- sethealth or health (number)   <br> = set your health
 - setthirsty or thirsty (number)  = set your thirsty
 - sethunger or hunger (number)    = set your hunger
 - setoxygen or oxygen (number)    = set your oxygen

@@ -11,11 +11,11 @@ Der Raft Healthsetter Mod ermöglicht das einfache Anpassen der Gesundheitswerte
 
 ## Funktionen
 
-- sethealth oder health (Anzahl) <br> = setze deine Gesundheit
-- setthirsty oder thirsty (Anzahl)  <br>= setze dein durst
-- sethunger oder hunger (Anzahl)  <br>  = setze dein hunger
-- setoxygen oder oxygen (Anzahl)  <br>  = setze deine luft
-- refill   <br> = fülle alles(health, thirsty, hunger and oxygen) wieder auf
-- healthhelp   <br>   = bekomme ein liste an commands und ihre funktionen
+- `sethealth` oder `health` (Anzahl) <br> = setze deine Gesundheit
+- `setthirsty` oder `thirsty` (Anzahl)  <br>= setze dein durst
+- `sethunger` oder `hunger` (Anzahl)  <br>  = setze dein hunger
+- `setoxygen` oder `oxygen` (Anzahl)  <br>  = setze deine luft
+- `refill`   <br> = fülle alles(health, thirsty, hunger and oxygen) wieder auf
+- `healthhelp`   <br>   = bekomme ein liste an commands und ihre funktionen
 
 Viel Spaß beim Spielen!
